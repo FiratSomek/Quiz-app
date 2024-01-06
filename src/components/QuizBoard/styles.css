@@ -1,0 +1,26 @@
+.quiz-board {
+  width: 700px;
+  height: 500px;
+  height: 100%;
+  color: #fff;
+  font-size: 20px;
+}
+.correct {
+  color: green;
+}
+.wrong {
+  color: red;
+}
+.option-list {
+  list-style: none;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: -20px;
+  padding: 5px;
+  cursor: pointer;
+}
+.option-list:hover {
+  color: rgb(70, 74, 192);
+  border: 1px solid rgb(70, 74, 192);
+}
