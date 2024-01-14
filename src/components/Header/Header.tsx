@@ -1,16 +1,13 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { QuizComplexity } from "../../types/QuizComplexity";
 
 interface Props {
-  setIsHard: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsEasy: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsMedium: React.Dispatch<React.SetStateAction<boolean>>;
+  setQuizComplexity: React.Dispatch<React.SetStateAction<QuizComplexity|undefined>>;
 }
 
 export const Header: React.FC<Props> = ({
-  setIsHard,
-  setIsEasy,
-  setIsMedium,
+  setQuizComplexity
 }) => {
   return (
     <Box
@@ -45,7 +42,7 @@ export const Header: React.FC<Props> = ({
             color="success"
             size="large"
             variant="contained"
-            onClick={() => setIsEasy(true)}
+            onClick={() => setQuizComplexity(QuizComplexity.EASY)}
           >
             Easy
           </Button>
@@ -55,7 +52,7 @@ export const Header: React.FC<Props> = ({
           <Button
             size="large"
             variant="contained"
-            onClick={() => setIsMedium(true)}
+            onClick={() => setQuizComplexity(QuizComplexity.MEDIUM)}
           >
             Medium
           </Button>
@@ -66,7 +63,7 @@ export const Header: React.FC<Props> = ({
             color="error"
             size="large"
             variant="contained"
-            onClick={() => setIsHard(true)}
+            onClick={() => setQuizComplexity(QuizComplexity.HARD)}
           >
             Hard
           </Button>
