@@ -1,31 +1,25 @@
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Typography,
-  Button,
-} from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { QuizComplexity } from "../../types/QuizComplexity";
+import { QuizDataItem } from "../../data";
 
 interface Props {
-  questions: any[];
-  setIsEasy: any;
-  setIsMedium: any;
-  setIsHard: any;
+  questions: QuizDataItem[];
+  setQuizComplexity: React.Dispatch<
+    React.SetStateAction<QuizComplexity | undefined>
+  >;
 }
 
 export const QuizBoard: React.FC<Props> = ({
+  setQuizComplexity,
   questions,
-  setIsEasy,
-  setIsMedium,
-  setIsHard,
 }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
+  const [score, setScore] = useState<number | undefined>(undefined);
 
   const handleAnswer = (e: any, answer: any) => {
     const correctAnswer = questions[currentQuestion].correct_answer;
@@ -53,6 +47,7 @@ export const QuizBoard: React.FC<Props> = ({
       }, 1000);
     } else {
       setTimeout(() => {
+        calculateScore();
         setShowResult(true);
       }, 1000);
     }
@@ -65,13 +60,11 @@ export const QuizBoard: React.FC<Props> = ({
         score++;
       }
     }
-    return score;
+    setScore(score);
   };
 
   const handleReset = () => {
-    setIsEasy(false);
-    setIsMedium(false);
-    setIsHard(false);
+    setQuizComplexity(undefined);
   };
 
   return (
@@ -90,21 +83,15 @@ export const QuizBoard: React.FC<Props> = ({
           {" "}
           <Typography variant="h2">Quiz App</Typography>
           <Typography variant="h4">
-            Your scored{" "}
-            <span style={{ color: "lightgreen" }}>{calculateScore()}</span> out
-            of {questions.length}
+            Your scored <span style={{ color: "lightgreen" }}>{score}</span> out
+            out of {questions.length}
           </Typography>
           <Link to="/" onClick={handleReset}>
             <Button variant="contained">RESET GAME</Button>
           </Link>
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <>
           <Typography variant="h4" sx={{ textAlign: "center" }}>
             Question {currentQuestion + 1}
           </Typography>
@@ -129,7 +116,7 @@ export const QuizBoard: React.FC<Props> = ({
               </li>
             ))}
           </ul>
-        </div>
+        </>
       )}
     </div>
   );
