@@ -28,18 +28,6 @@ export const QuizBoard: React.FC<Props> = ({
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState<number | undefined>(undefined);
 
-<<<<<<< Updated upstream
-  const handleAnswer = (e: any, answer: any) => {
-    const correctAnswer = questions[currentQuestion].correct_answer;
-    const isCorrect = answer === questions[currentQuestion].correct_answer;
-    if (isCorrect) {
-      e.target.classList.add("correct");
-    } else {
-      e.target.classList.add("wrong");
-      document.querySelectorAll(".option-list").forEach((option: any) => {
-        if (option.innerText === correctAnswer) {
-          option.classList.add("correct");
-=======
   const handleAnswer = (answer: QuestionOption) => {
     const updatedOptions = questions[currentQuestion].options.map((option) => {
       if (answer.title === option.title) {
@@ -47,7 +35,6 @@ export const QuizBoard: React.FC<Props> = ({
           return { ...option, class: OptionClass[0] };
         } else {
           return { ...option, class: OptionClass[1] };
->>>>>>> Stashed changes
         }
       } else if (option.title === questions[currentQuestion].correct_answer) {
         return { ...option, class: OptionClass[0] };
@@ -128,19 +115,6 @@ export const QuizBoard: React.FC<Props> = ({
           </Typography>
           <ul>
             {" "}
-<<<<<<< Updated upstream
-            {questions[currentQuestion].options.map((option: any) => (
-              <li
-                className="option-list "
-                key={option.index}
-                onClick={(e) => handleAnswer(e, option)}
-              >
-                <Typography variant="h5" sx={{ marginLeft: "20px" }}>
-                  {option}
-                </Typography>
-              </li>
-            ))}
-=======
             {questions[currentQuestion].options.map(
               (option: QuestionOption) => (
                 <li
@@ -154,7 +128,6 @@ export const QuizBoard: React.FC<Props> = ({
                 </li>
               )
             )}
->>>>>>> Stashed changes
           </ul>
         </>
       )}
