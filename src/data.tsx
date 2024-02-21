@@ -4,16 +4,12 @@ export interface QuizDataItem {
   category: string;
   question: string;
   correct_answer: string;
-<<<<<<< Updated upstream
-  options: string[];
-=======
   options: QuestionOption[];
 }
 
 export interface QuestionOption {
   title: string;
   class: string;
->>>>>>> Stashed changes
 }
 
 export const quizData: QuizDataItem[] = [
@@ -24,10 +20,10 @@ export const quizData: QuizDataItem[] = [
     question: "What is the official name of Prince's backing band?",
     correct_answer: "The Revolution",
     options: [
-      "The Paupers",
-      "The Revolution",
-      "The Wailers",
-      "The Heartbreakers",
+      { title: "The Paupers", class: "" },
+      { title: "The Revolution", class: "" },
+      { title: "The Wailers", class: "" },
+      { title: "The Heartbreakers", class: "" },
     ],
   },
   {
@@ -35,9 +31,14 @@ export const quizData: QuizDataItem[] = [
     difficulty: "hard",
     category: "Entertainment: Board Games",
     question:
-      "What was the development code name for the Weatherlight expansion for  The Gathering, released in 1997?",
+      "What was the development code name for the Weatherlight expansion for The Gathering, released in 1997?",
     correct_answer: "Mocha Latte",
-    options: ["Decaf", "Frappuccino", "Mocha Latte", "Macchiato"],
+    options: [
+      { title: "Decaf", class: "" },
+      { title: "Frappuccino", class: "" },
+      { title: "Mocha Latte", class: "" },
+      { title: "Macchiato", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -46,10 +47,10 @@ export const quizData: QuizDataItem[] = [
     question: "What national museum will you find in Cooperstown, New York?",
     correct_answer: "National Baseball Hall of Fame",
     options: [
-      "National Baseball Hall of Fame",
-      "Metropolitan Museum of Art",
-      "National Toy Hall of Fame",
-      "Museum of Modern Art",
+      { title: "National Baseball Hall of Fame", class: "" },
+      { title: "Metropolitan Museum of Art", class: "" },
+      { title: "National Toy Hall of Fame", class: "" },
+      { title: "Museum of Modern Art", class: "" },
     ],
   },
   {
@@ -59,7 +60,12 @@ export const quizData: QuizDataItem[] = [
     question:
       "Located in Chile, El Teniente is the world's largest underground mine for what metal?",
     correct_answer: "Copper",
-    options: ["Iron", "Copper", "Nickel", "Silver"],
+    options: [
+      { title: "Iron", class: "" },
+      { title: "Copper", class: "" },
+      { title: "Nickel", class: "" },
+      { title: "Silver", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -67,7 +73,12 @@ export const quizData: QuizDataItem[] = [
     category: "Geography",
     question: "How many countries border Kyrgyzstan?",
     correct_answer: "4",
-    options: ["3", "4", "1", "6"],
+    options: [
+      { title: "3", class: "" },
+      { title: "4", class: "" },
+      { title: "1", class: "" },
+      { title: "6", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -75,7 +86,12 @@ export const quizData: QuizDataItem[] = [
     category: "History",
     question: "The minigun was designed in 1960 by which manufacturer.",
     correct_answer: "General Electric",
-    options: ["General Electric", "Colt Firearms", "Heckler Koch", "Sig Sauer"],
+    options: [
+      { title: "General Electric", class: "" },
+      { title: "Colt Firearms", class: "" },
+      { title: "Heckler Koch", class: "" },
+      { title: "Sig Sauer", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -84,10 +100,10 @@ export const quizData: QuizDataItem[] = [
     question: "What is the name of Batman's parents?",
     correct_answer: "Thomas & Martha",
     options: [
-      "Joey & Jackie",
-      "Jason & Sarah",
-      "Todd & Mira",
-      "Thomas & Martha",
+      { title: "Joey & Jackie", class: "" },
+      { title: "Jason & Sarah", class: "" },
+      { title: "Todd & Mira", class: "" },
+      { title: "Thomas & Martha", class: "" },
     ],
   },
   {
@@ -97,10 +113,10 @@ export const quizData: QuizDataItem[] = [
     question: "What are the four corner states of the US?",
     correct_answer: "Utah, Colorado, Arizona, New Mexico",
     options: [
-      "Oregon, Idaho, Nevada, Utah",
-      "Kansas, Oklahoma, Arkansas, Louisiana",
-      "South Dakota, Minnesota, Nebraska, Iowa",
-      "Utah, Colorado, Arizona, New Mexico",
+      { title: "Oregon, Idaho, Nevada, Utah", class: "" },
+      { title: "Kansas, Oklahoma, Arkansas, Louisiana", class: "" },
+      { title: "South Dakota, Minnesota, Nebraska, Iowa", class: "" },
+      { title: "Utah, Colorado, Arizona, New Mexico", class: "" },
     ],
   },
   {
@@ -109,7 +125,12 @@ export const quizData: QuizDataItem[] = [
     category: "History",
     question: "When did the Crisis of the Third Century begin?",
     correct_answer: "235 AD",
-    options: ["235 BC", "242 AD", "235 AD", "210 AD"],
+    options: [
+      { title: "235 BC", class: "" },
+      { title: "242 AD", class: "" },
+      { title: "235 AD", class: "" },
+      { title: "210 AD", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -117,7 +138,12 @@ export const quizData: QuizDataItem[] = [
     category: "History",
     question: "Which dictator killed the most people?",
     correct_answer: "Mao Zedong",
-    options: ["Mao Zedong", "Joseph Stalin", "Adolf Hitler", "Kim Il Sung"],
+    options: [
+      { title: "Mao Zedong", class: "" },
+      { title: "Joseph Stalin", class: "" },
+      { title: "Adolf Hitler", class: "" },
+      { title: "Kim Il Sung", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -125,7 +151,12 @@ export const quizData: QuizDataItem[] = [
     category: "Entertainment: Music",
     question: "Who is the lead singer of Arctic Monkeys?",
     correct_answer: "Alex Turner",
-    options: ["Jamie Cook", "Alex Turner", "Matt Helders", "Nick Malley"],
+    options: [
+      { title: "Jamie Cook", class: "" },
+      { title: "Alex Turner", class: "" },
+      { title: "Matt Helders", class: "" },
+      { title: "Nick Malley", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -133,7 +164,12 @@ export const quizData: QuizDataItem[] = [
     category: "Entertainment: Video Games",
     question: "What year was the game Team Fortress 2 released?",
     correct_answer: "2007",
-    options: ["2009", "2005", "2010", "2007"],
+    options: [
+      { title: "2009", class: "" },
+      { title: "2005", class: "" },
+      { title: "2010", class: "" },
+      { title: "2007", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -141,7 +177,12 @@ export const quizData: QuizDataItem[] = [
     category: "Entertainment: Music",
     question: "Which English guitarist has the nickname Slowhand?",
     correct_answer: "Eric Clapton",
-    options: ["Mark Knopfler", "Eric Clapton", "Jeff Beck", "Jimmy Page"],
+    options: [
+      { title: "Mark Knopfler", class: "" },
+      { title: "Eric Clapton", class: "" },
+      { title: "Jeff Beck", class: "" },
+      { title: "Jimmy Page", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -149,7 +190,12 @@ export const quizData: QuizDataItem[] = [
     category: "Entertainment: Cartoon Animations",
     question: "In South Park, what is Stan's surname?",
     correct_answer: "Marsh",
-    options: ["Marsh", "Stotch", "Broflovski", "Tweak"],
+    options: [
+      { title: "Marsh", class: "" },
+      { title: "Stotch", class: "" },
+      { title: "Broflovski", class: "" },
+      { title: "Tweak", class: "" },
+    ],
   },
   {
     type: "multiple",
@@ -157,6 +203,11 @@ export const quizData: QuizDataItem[] = [
     category: "Sports",
     question: "Which team won 2014 FIFA World Cup in Brazil?",
     correct_answer: "Germany",
-    options: ["Argentina", "Brazil", "Germany", "Netherlands"],
+    options: [
+      { title: "Argentina", class: "" },
+      { title: "Brazil", class: "" },
+      { title: "Germany", class: "" },
+      { title: "Netherlands", class: "" },
+    ],
   },
 ];
