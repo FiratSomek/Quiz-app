@@ -4,7 +4,16 @@ export interface QuizDataItem {
   category: string;
   question: string;
   correct_answer: string;
+<<<<<<< Updated upstream
   options: string[];
+=======
+  options: QuestionOption[];
+}
+
+export interface QuestionOption {
+  title: string;
+  class: string;
+>>>>>>> Stashed changes
 }
 
 export const quizData: QuizDataItem[] = [
@@ -130,7 +139,7 @@ export const quizData: QuizDataItem[] = [
     type: "multiple",
     difficulty: "easy",
     category: "Entertainment: Music",
-    question: "Which English guitarist has the nickname Slowhand&quot;?",
+    question: "Which English guitarist has the nickname Slowhand?",
     correct_answer: "Eric Clapton",
     options: ["Mark Knopfler", "Eric Clapton", "Jeff Beck", "Jimmy Page"],
   },
