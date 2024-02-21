@@ -41,6 +41,7 @@ export const App = () => {
                   questions={questions.filter(
                     (q) => q.difficulty === quizComplexity
                   )}
+                  setQuestions={setQuestions}
                 />
               )}
               {quizComplexity === QuizComplexity.MEDIUM && (
@@ -49,6 +50,7 @@ export const App = () => {
                   questions={questions.filter(
                     (q) => q.difficulty === quizComplexity
                   )}
+                  setQuestions={setQuestions}
                 />
               )}
               {quizComplexity === QuizComplexity.HARD && (
@@ -57,6 +59,7 @@ export const App = () => {
                   questions={questions.filter(
                     (q) => q.difficulty === quizComplexity
                   )}
+                  setQuestions={setQuestions}
                 />
               )}
             </>
