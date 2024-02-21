@@ -23,9 +23,9 @@ export const QuizBoard: React.FC<Props> = ({
 
   const handleAnswer = (e: any, answer: any) => {
     const correctAnswer = questions[currentQuestion].correct_answer;
-    const isCorrect = answer === questions[currentQuestion].correct_answer;
+    const isCorrect = answer === correctAnswer;
     if (isCorrect) {
-      e.target.classList.add("correct");
+      e.currentTarget.classList.add("correct");
     } else {
       e.target.classList.add("wrong");
       document.querySelectorAll(".option-list").forEach((option: any) => {
@@ -106,12 +106,12 @@ export const QuizBoard: React.FC<Props> = ({
             {" "}
             {questions[currentQuestion].options.map((option: any) => (
               <li
-                className="option-list "
+                className={"option-list"}
                 key={option.index}
                 onClick={(e) => handleAnswer(e, option)}
               >
                 <Typography variant="h5" sx={{ marginLeft: "20px" }}>
-                  {option}
+                  {option.title}
                 </Typography>
               </li>
             ))}
