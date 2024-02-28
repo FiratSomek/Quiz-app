@@ -13,10 +13,7 @@ interface Props {
   setQuestions: React.Dispatch<React.SetStateAction<QuizDataItem[]>>;
 }
 
-enum OptionClass {
-  correct,
-  wrong,
-}
+export enum OptionClass { Correct = 'correct', Wrong = 'wrong', };
 
 export const QuizBoard: React.FC<Props> = ({
   setQuizComplexity,
@@ -26,21 +23,24 @@ export const QuizBoard: React.FC<Props> = ({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [score, setScore] = useState<number | undefined>(undefined);
+  const [score, setScore] = useState<number>(0);
 
   const handleAnswer = (answer: QuestionOption) => {
+    const isAnswerCorrect = !!(questions[currentQuestion].correct_answer === answer.title);
+
     const updatedOptions = questions[currentQuestion].options.map((option) => {
       if (answer.title === option.title) {
-        if (option.title === questions[currentQuestion].correct_answer) {
-          return { ...option, class: OptionClass[0] };
+        if (isAnswerCorrect) {
+          return { ...option, class: OptionClass.Correct };
         } else {
-          return { ...option, class: OptionClass[1] };
+          return { ...option, class: OptionClass.Wrong };
         }
       } else if (option.title === questions[currentQuestion].correct_answer) {
-        return { ...option, class: OptionClass[0] };
+        return { ...option, class: OptionClass.Correct };
       }
       return option;
     });
+    // TODO: I think the state userAnswers should not be needed as long as we add correct/wrong class to the questions state
     setUserAnswers([...userAnswers, answer.title]);
     const updatedCurrentQuestion = {
       ...questions[currentQuestion],
@@ -54,30 +54,27 @@ export const QuizBoard: React.FC<Props> = ({
     });
     setQuestions(updatedQuestions);
 
+    if (isAnswerCorrect) {
+      setScore((prevScore) => prevScore + 1);
+    }
+
     if (currentQuestion + 1 < questions.length) {
       setTimeout(() => {
         setCurrentQuestion(currentQuestion + 1);
       }, 1000);
     } else {
       setTimeout(() => {
-        calculateScore();
         setShowResult(true);
       }, 2000);
     }
   };
-  const calculateScore = () => {
-    let score = 0;
-    for (let i = 0; i < questions.length; i++) {
-      if (userAnswers[i] === questions[i].correct_answer) {
-        score++;
-      }
-    }
-    setScore(score);
-  };
+
   const handleReset = () => {
     setQuizComplexity(undefined);
     setQuestions(quizData);
+    setScore(0);
   };
+
   return (
     <div className="quiz-board">
       {showResult ? (
