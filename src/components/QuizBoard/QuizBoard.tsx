@@ -1,5 +1,5 @@
 import { Typography, Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 import { QuizComplexity } from "../../types/QuizComplexity";
@@ -13,9 +13,9 @@ interface Props {
   setQuestions: React.Dispatch<React.SetStateAction<QuizDataItem[]>>;
 }
 
-enum OptionClass {
-  correct,
-  wrong,
+export enum OptionClass {
+  Correct = "correct",
+  Wrong = "wrong",
 }
 
 export const QuizBoard: React.FC<Props> = ({
@@ -26,18 +26,34 @@ export const QuizBoard: React.FC<Props> = ({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [score, setScore] = useState<number | undefined>(undefined);
+  const [score, setScore] = useState<number>(0);
+
+  useEffect(() => {
+    if (showResult) {
+      let score = 0;
+      for (let i = 0; i < questions.length; i++) {
+        if (userAnswers[i] === questions[i].correct_answer) {
+          score++;
+        }
+      }
+      setScore(score);
+    }
+  }, [showResult, questions, userAnswers]);
 
   const handleAnswer = (answer: QuestionOption) => {
+    const isAnswerCorrect = !!(
+      questions[currentQuestion].correct_answer === answer.title
+    );
+
     const updatedOptions = questions[currentQuestion].options.map((option) => {
       if (answer.title === option.title) {
-        if (option.title === questions[currentQuestion].correct_answer) {
-          return { ...option, class: OptionClass[0] };
+        if (isAnswerCorrect) {
+          return { ...option, class: OptionClass.Correct };
         } else {
-          return { ...option, class: OptionClass[1] };
+          return { ...option, class: OptionClass.Wrong };
         }
       } else if (option.title === questions[currentQuestion].correct_answer) {
-        return { ...option, class: OptionClass[0] };
+        return { ...option, class: OptionClass.Correct };
       }
       return option;
     });
@@ -60,23 +76,18 @@ export const QuizBoard: React.FC<Props> = ({
       }, 1000);
     } else {
       setTimeout(() => {
-        calculateScore();
         setShowResult(true);
       }, 2000);
     }
   };
-  const calculateScore = () => {
-    let score = 0;
-    for (let i = 0; i < questions.length; i++) {
-      if (userAnswers[i] === questions[i].correct_answer) {
-        score++;
-      }
-    }
-    setScore(score);
-  };
+
   const handleReset = () => {
     setQuizComplexity(undefined);
     setQuestions(quizData);
+    setScore(0);
+    setCurrentQuestion(0);
+    setUserAnswers([]);
+    setShowResult(false);
   };
   return (
     <div className="quiz-board">
