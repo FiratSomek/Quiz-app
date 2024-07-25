@@ -4,16 +4,12 @@ export interface QuizDataItem {
   category: string;
   question: string;
   correct_answer: string;
-<<<<<<< HEAD
-  options: { title: string; class: string }[];
-=======
   options: QuestionOption[];
 }
 
 export interface QuestionOption {
   title: string;
   class: string;
->>>>>>> branch_2
 }
 
 export const quizData: QuizDataItem[] = [

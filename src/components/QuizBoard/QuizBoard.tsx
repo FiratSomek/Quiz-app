@@ -28,25 +28,12 @@ export const QuizBoard: React.FC<Props> = ({
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState<number>(0);
 
-<<<<<<< HEAD
-  const handleAnswer = (e: any, answer: any) => {
-    const correctAnswer = questions[currentQuestion].correct_answer;
-    const isCorrect = answer === correctAnswer;
-    if (isCorrect) {
-      e.currentTarget.classList.add("correct");
-    } else {
-      e.target.classList.add("wrong");
-      document.querySelectorAll(".option-list").forEach((option: any) => {
-        if (option.innerText === correctAnswer) {
-          option.classList.add("correct");
-=======
   useEffect(() => {
     if (showResult) {
       let score = 0;
       for (let i = 0; i < questions.length; i++) {
         if (userAnswers[i] === questions[i].correct_answer) {
           score++;
->>>>>>> branch_2
         }
       }
       setScore(score);
@@ -139,19 +126,6 @@ export const QuizBoard: React.FC<Props> = ({
           </Typography>
           <ul>
             {" "}
-<<<<<<< HEAD
-            {questions[currentQuestion].options.map((option: any) => (
-              <li
-                className={"option-list"}
-                key={option.index}
-                onClick={(e) => handleAnswer(e, option)}
-              >
-                <Typography variant="h5" sx={{ marginLeft: "20px" }}>
-                  {option.title}
-                </Typography>
-              </li>
-            ))}
-=======
             {questions[currentQuestion].options.map(
               (option: QuestionOption) => (
                 <li
@@ -165,7 +139,6 @@ export const QuizBoard: React.FC<Props> = ({
                 </li>
               )
             )}
->>>>>>> branch_2
           </ul>
         </>
       )}
